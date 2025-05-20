@@ -5,11 +5,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
+  useNavigation,
 } from "react-router";
 
+import { Settings } from "luxon";
 import type { Route } from "./+types/root";
-import "./app.css";
+import stylesheet from "./app.css?url";
 import Navigation from "./common/components/navigation";
+import { getUserById } from "./features/users/queries";
+import { cn } from "./lib/utils";
+import { makeSSRClient } from "./supa-client";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -22,11 +28,15 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "stylesheet", href: stylesheet },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  Settings.defaultLocale = "ko";
+  Settings.defaultZone = "Asia/Seoul";
+
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,14 +52,41 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+export const loader = async ({ request }: Route.ActionArgs) => {
+  const { client } = makeSSRClient(request);
+  const {
+    data: { user },
+  } = await client.auth.getUser();
+  if (user) {
+    const profile = await getUserById(client, user?.id);
+    return { user, profile };
+  }
+  return { user: null, profile: null };
+};
+
+export default function App({ loaderData }: Route.ComponentProps) {
+  const { pathname } = useLocation();
+  const navigation = useNavigation();
+  const isLoading = navigation.state === "loading";
+  const isLoggedIn = loaderData.user !== null;
+
   return (
-    <div className="py-28">
-      <Navigation
-        hasMessages={true}
-        hasNotifications={true}
-        isLoggedIn={true}
-      />
+    <div
+      className={cn({
+        "px-5 py-28 lg:px-20": !pathname.includes("/auth/"),
+        "animate-pulse transition-opacity": isLoading,
+      })}
+    >
+      {pathname.includes("/auth") ? null : (
+        <Navigation
+          isLoggedIn={isLoggedIn}
+          username={loaderData.profile?.username}
+          name={loaderData.profile?.name}
+          avatar={loaderData.profile?.avatar}
+          hasNotifications={true}
+          hasMessages={true}
+        />
+      )}
       <Outlet />
     </div>
   );
