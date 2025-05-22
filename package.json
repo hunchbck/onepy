@@ -14,7 +14,7 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-navigation-menu": "^1.2.12",
     "@radix-ui/react-separator": "^1.1.6",
-    "@radix-ui/react-slot": "^1.2.2",
+    "@radix-ui/react-slot": "^1.2.3",
     "@react-router/node": "^7.5.3",
     "@react-router/serve": "^7.5.3",
     "@supabase/ssr": "^0.6.1",
@@ -28,11 +28,12 @@
     "react-router": "^7.5.3",
     "react-router-dom": "^7.5.3",
     "tailwind-merge": "^3.3.0",
-    "zod": "^3.25.7"
+    "zod": "^3.25.20"
   },
   "devDependencies": {
     "@react-router/dev": "^7.5.3",
     "@tailwindcss/vite": "^4.1.4",
+    "@types/luxon": "^3.6.2",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",

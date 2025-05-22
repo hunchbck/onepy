@@ -1,13 +1,10 @@
 import type { MetaFunction } from "react-router";
 import { ProductCard } from "~/features/products/components/product-card";
-import { Button } from "../components/ui/button";
-import { PostCard } from "~/features/community/components/post-card";
-import { Link } from "lucide-react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Home | wemake" },
-    { name: "description", content: "Welcome to wemake" },
+    { title: "Home | 분양인" },
+    { name: "description", content: "Welcome to 분양인" },
   ];
 };
 
