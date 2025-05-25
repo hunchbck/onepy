@@ -11,12 +11,12 @@ export const meta: MetaFunction = () => {
 export default function HomePage() {
   return (
     <div className="px-20">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <div>
-          <h2 className="text-5xl font-bold leading-tight tracking-tight">
+          <h2 className="text-5xl leading-tight font-bold tracking-tight">
             오늘의 상품
           </h2>
-          <p className="text-xl font-light text-foreground">
+          <p className="text-foreground text-xl font-light">
             오늘의 상품을 확인해보세요.
           </p>
         </div>

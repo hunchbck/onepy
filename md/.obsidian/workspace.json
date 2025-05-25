@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00.WebApp Planning.md",
+                "file": "2-2.Task_Flow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "00.WebApp Planning"
+              "title": "2-2.Task_Flow"
             }
           }
         ]
@@ -169,5 +169,12 @@
     }
   },
   "active": "e216b2429ad2b726",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "3-3.Membership_System.md",
+    "3-2.State_Value.md",
+    "3-1.Service_Use_Policy.md",
+    "2-8.Functional_Specification.md",
+    "2-1.Menu_Structure.md",
+    "00.WebApp Planning.md"
+  ]
 }

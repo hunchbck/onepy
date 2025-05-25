@@ -354,81 +354,9 @@ export default function Navigation({
           </>
         )}
       </div>
-      {/* 모바일 우측 버튼 */}
+      {/* 모바일 우측 버튼(필요시) */}
       <div className="flex items-center gap-2 md:hidden">
-        {isLoggedIn ? (
-          <>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/notifications">
-                <BellIcon className="size-5" />
-                {hasNotifications && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
-              </Link>
-            </Button>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/messages">
-                <MessageCircleIcon className="size-5" />
-                {hasMessages && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
-              </Link>
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar>
-                  <AvatarImage src="https://github.com/serranoarevalo.png" />
-                  <AvatarFallback>N</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel className="flex flex-col">
-                  <span className="font-medium">John Doe</span>
-                  <span className="text-muted-foreground text-xs">
-                    @username
-                  </span>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/dashboard">
-                      <BarChart3Icon className="mr-2 size-4" />
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/profile">
-                      <UserIcon className="mr-2 size-4" />
-                      Profile
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/settings">
-                      <SettingsIcon className="mr-2 size-4" />
-                      Settings
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/auth/logout">
-                    <LogOutIcon className="mr-2 size-4" />
-                    Logout
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        ) : (
-          <>
-            <Button asChild variant="secondary">
-              <Link to="/auth/login">Login</Link>
-            </Button>
-            <Button asChild>
-              <Link to="/auth/join">Join</Link>
-            </Button>
-          </>
-        )}
+        {/* 모바일용 알림/메시지/로그인 버튼 등 필요시 추가 구현 */}
       </div>
     </nav>
   );
