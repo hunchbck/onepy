@@ -149,6 +149,3 @@ dist
 .pnp.*
 .open-next/
 .vercel/
-
-# md
-/md/

@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1748376829177,
+      "tag": "0000_outgoing_madrox",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748378229171,
+      "tag": "0001_omniscient_marvel_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1748378773645,
+      "tag": "0002_purple_ender_wiggin",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1748378845386,
+      "tag": "0003_silky_jamie_braddock",
+      "breakpoints": true
+    }
+  ]
+}

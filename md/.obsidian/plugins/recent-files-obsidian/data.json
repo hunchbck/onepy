@@ -1,0 +1,64 @@
+{
+  "recentFiles": [
+    {
+      "basename": "user_onepy",
+      "path": "Tags/model/users/user_onepy.md"
+    },
+    {
+      "basename": "center",
+      "path": "Tags/model/building/center.md"
+    },
+    {
+      "basename": "테이블 관계",
+      "path": "Tags/model/테이블 관계.md"
+    },
+    {
+      "basename": "payment_log",
+      "path": "Tags/model/payments/payment_log.md"
+    },
+    {
+      "basename": "payment",
+      "path": "Tags/model/payments/payment.md"
+    },
+    {
+      "basename": "real_money_log",
+      "path": "Tags/model/payments/real_money_log.md"
+    },
+    {
+      "basename": "onepy_money_log",
+      "path": "Tags/model/payments/onepy_money_log.md"
+    },
+    {
+      "basename": "user_supabase",
+      "path": "Tags/model/users/user_supabase.md"
+    },
+    {
+      "basename": "3-3.Membership_System",
+      "path": "3-3.Membership_System.md"
+    },
+    {
+      "basename": "2-1.Menu_Structure",
+      "path": "2-1.Menu_Structure.md"
+    },
+    {
+      "basename": "필요한기능",
+      "path": "분양/필요한기능.md"
+    },
+    {
+      "basename": "00.WebApp Planning",
+      "path": "00.WebApp Planning.md"
+    },
+    {
+      "basename": "1.Document_History",
+      "path": "1.Document_History.md"
+    },
+    {
+      "basename": "2-2.Task_Flow",
+      "path": "2-2.Task_Flow.md"
+    }
+  ],
+  "omittedPaths": [],
+  "omittedTags": [],
+  "updateOn": "file-open",
+  "omitBookmarks": false
+}

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2-2.Task_Flow.md",
+                "file": "Tags/model/users/user_onepy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2-2.Task_Flow"
+              "title": "user_onepy"
             }
           }
         ]
@@ -73,12 +73,32 @@
               "icon": "lucide-bookmark",
               "title": "북마크"
             }
+          },
+          {
+            "id": "29a945eb620ec7ad",
+            "type": "leaf",
+            "state": {
+              "type": "mk-path-view",
+              "state": {},
+              "icon": "layout-grid",
+              "title": "Navigator"
+            }
+          },
+          {
+            "id": "b09fcb35102ce786",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {},
+              "icon": "clock",
+              "title": "Recent Files"
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 286.5
   },
   "right": {
     "id": "f1ed49855ec2fe40",
@@ -94,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "00.WebApp Planning.md",
+                "file": "Tags/model/users/user_onepy.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +124,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "00.WebApp Planning 의 백링크"
+              "title": "user_onepy 의 백링크"
             }
           },
           {
@@ -155,26 +175,67 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
+      "markdown-importer:마크다운 형식 불러오기 열기": false,
       "switcher:빠른 전환기 열기": false,
       "graph:그래프 뷰 열기": false,
       "canvas:새 캔버스 만들기": false,
       "daily-notes:오늘의 일일 노트 열기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false
+      "command-palette:명령어 팔레트 열기": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-kanban:새 보드 만들기": false,
+      "markdown-table-editor:Open Markdown Table Editor": false,
+      "media-extended:Open media": false,
+      "mermaid-tools:Open Mermaid Toolbar": false,
+      "smart-composer:Open smart composer": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
+      "webpage-html-export:Export Vault to HTML": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
   "active": "e216b2429ad2b726",
   "lastOpenFiles": [
-    "3-3.Membership_System.md",
-    "3-2.State_Value.md",
-    "3-1.Service_Use_Policy.md",
-    "2-8.Functional_Specification.md",
-    "2-1.Menu_Structure.md",
-    "00.WebApp Planning.md"
+    "Tags/model/building/center.md",
+    "Tags/model/building/center_developer.md",
+    "Tags/model/building/center_contractor.md",
+    "Tags/model/users/company_company_group_map.md",
+    "Tags/model/users/company_group.md",
+    "Tags/model/users/company_file.md",
+    "Tags/model/users/business_card_image.md",
+    "Tags/model/users/user_company_map.md",
+    "Tags/model/users/company.md",
+    "Tags/model/users/business_card.md",
+    "Tags/model/users/avatar.md",
+    "Tags/model/building/center_unit_price_history.md",
+    "Tags/model/building/center_history.md",
+    "Tags/model/테이블 관계.md",
+    "Tags/model/building/center_floorplan.md",
+    "Tags/model/building/center_unit_price.md",
+    "Tags/model/building/center_photo.md",
+    "Tags/model/building/center_contractor_map.md",
+    "Tags/model/building/center_developer_map.md",
+    "Tags/model/building",
+    "Tags/model/payments/payment_log.md",
+    "Tags/model/payments/payment.md",
+    "Tags/model/payments/real_money_log.md",
+    "Tags/model/payments/onepy_money_log.md",
+    "Tags/model/users/user_supabase.md",
+    "Tags/model/users/user_onepy.md",
+    "Tags/model/money/onepy_money_log.md",
+    "Tags/model/money",
+    "Tags/model/payments",
+    "Tags/model/users",
+    "Tags/model/새 폴더",
+    "Tags/model/payment",
+    "Tags/model",
+    "분양/주저리주저리.txt",
+    "분양",
+    "Tags"
   ]
 }

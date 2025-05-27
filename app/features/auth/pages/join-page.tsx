@@ -11,7 +11,7 @@ import type { Route } from "./+types/join-page";
 export const meta: Route.MetaFunction = () => {
   return [
     { title: "Join | wemake" },
-    { name: "description", content: "Create your account" }
+    { name: "description", content: "Create your account" },
   ];
 };
 
@@ -19,39 +19,39 @@ const formSchema = z.object({
   name: z.string().min(3),
   username: z.string().min(3),
   email: z.string().email(),
-  password: z.string().min(8)
+  password: z.string().min(8),
 });
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const formData = await request.formData();
   const { success, data, error } = formSchema.safeParse(
-    Object.fromEntries(formData)
+    Object.fromEntries(formData),
   );
   if (!success) {
     return {
       signUpError: null,
-      formErrors: error.flatten().fieldErrors
+      formErrors: error.flatten().fieldErrors,
     };
   }
   const usernameExists = await checkUsernameExists(request, {
-    username: data.username
+    username: data.username,
   });
   if (usernameExists) {
     return {
       signUpError: null,
-      formErrors: { username: ["Username already exists"] }
+      formErrors: { username: ["Username already exists"] },
     };
   }
   const { client, headers } = makeSSRClient(request);
   const { error: signUpError } = await client.auth.signUp({
     email: data.email,
     password: data.password,
-    options: { data: { name: data.name, username: data.username } }
+    options: { data: { name: data.name, username: data.username } },
   });
   if (signUpError) {
     return {
       formErrors: null,
-      signUpError: signUpError.message
+      signUpError: signUpError.message,
     };
   }
   return redirect("/", { headers });
@@ -63,19 +63,19 @@ export default function JoinPage({ actionData }: Route.ComponentProps) {
     navigation.state === "submitting" || navigation.state === "loading";
   return (
     <div className="relative flex h-full flex-col items-center justify-center">
-      <Button variant="ghost" asChild className="absolute right-8 top-8">
+      <Button variant="ghost" asChild className="absolute top-8 right-8">
         <Link to="/auth/login">Login</Link>
       </Button>
       <div className="flex w-full max-w-md flex-col items-center justify-center gap-10">
-        <h1 className="text-2xl font-semibold">Create an account</h1>
+        <h1 className="text-2xl font-semibold">회원가입</h1>
         <Form className="w-full space-y-4" method="post">
           <InputPair
             id="name"
-            label="Name"
+            label="이름"
             name="name"
             type="text"
-            placeholder="Enter your name"
-            description="Enter your name"
+            placeholder="이름을 입력하세요"
+            description="이름을 입력하세요"
             required
           />
           {actionData && "formErrors" in actionData && (
@@ -83,11 +83,11 @@ export default function JoinPage({ actionData }: Route.ComponentProps) {
           )}
           <InputPair
             id="username"
-            label="Username"
+            label="사용자명"
             name="username"
             type="text"
-            placeholder="i.e wemake"
-            description="Enter your username"
+            placeholder="예: wemake"
+            description="사용자명을 입력하세요"
             required
           />
           {actionData && "formErrors" in actionData && (
@@ -95,11 +95,11 @@ export default function JoinPage({ actionData }: Route.ComponentProps) {
           )}
           <InputPair
             id="email"
-            label="Email"
+            label="이메일"
             name="email"
             type="email"
-            placeholder="i.e. john@doe.com"
-            description="Enter your email address"
+            placeholder="예: john@doe.com"
+            description="이메일 주소를 입력하세요"
             required
           />
           {actionData && "formErrors" in actionData && (
@@ -107,11 +107,11 @@ export default function JoinPage({ actionData }: Route.ComponentProps) {
           )}
           <InputPair
             id="password"
-            label="Password"
+            label="비밀번호"
             name="password"
             type="password"
-            placeholder="Enter your password"
-            description="Enter your password"
+            placeholder="비밀번호를 입력하세요"
+            description="비밀번호를 입력하세요"
             required
           />
           {actionData && "formErrors" in actionData && (
@@ -121,7 +121,7 @@ export default function JoinPage({ actionData }: Route.ComponentProps) {
             {isSubmitting ? (
               <LoaderCircle className="animate-spin" />
             ) : (
-              "Create account"
+              "가입 할래요~"
             )}
           </Button>
           {actionData && "signUpError" in actionData && (

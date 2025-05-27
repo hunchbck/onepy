@@ -1,12 +1,20 @@
+import type { LucideIcon } from "lucide-react";
 import {
   BarChart3Icon,
   BellIcon,
+  Building2Icon,
+  CalculatorIcon,
+  HandCoinsIcon,
+  HomeIcon,
+  KeyIcon,
   LogOutIcon,
   Menu,
   MessageCircleIcon,
   SettingsIcon,
   UserIcon,
+  Users2Icon
 } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { Separator } from "~/common/components/ui/separator";
 import { cn } from "~/lib/utils";
@@ -19,271 +27,202 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "./ui/dropdown-menu";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "./ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
-const menus = [
+interface MenuItem {
+  name: string;
+  to: string;
+  icon?: LucideIcon;
+}
+
+interface Menu {
+  name: string;
+  to: string;
+  icon?: LucideIcon;
+  items?: MenuItem[];
+}
+
+const menus: Menu[] = [
   {
-    name: "대시보드",
-    to: "/dashboard",
-  },
-  {
-    name: "조직 관리",
-    to: "/orgs",
+    name: "계산기",
+    icon: CalculatorIcon,
+    to: "/calculator",
     items: [
-      {
-        name: "조직도",
-        description: "조직도 시각화 및 관리",
-        to: "/orgs/structure",
-      },
-      {
-        name: "멤버 초대",
-        description: "조직 멤버 초대 및 권한 설정",
-        to: "/orgs/invite",
-      },
-    ],
+      { name: "잔금 계산기", to: "/calculator/balance" },
+      { name: "수익률 계산기", to: "/calculator/earnings" }
+    ]
   },
   {
-    name: "분양 관리",
-    to: "/projects",
+    name: "분양",
+    icon: Building2Icon,
+    to: "/sale",
     items: [
-      {
-        name: "분양 단지 목록",
-        description: "분양 단지 리스트",
-        to: "/projects/list",
-      },
-      {
-        name: "계약 관리",
-        description: "계약 현황 및 관리",
-        to: "/projects/contracts",
-      },
-      {
-        name: "분양 현황판",
-        description: "호실별 분양 현황 및 공유",
-        to: "/projects/status",
-      },
-    ],
+      { name: "지식산업센터", to: "/sale/kic" },
+      { name: "오피스빌딩", to: "/sale/office" },
+      { name: "프라자상가", to: "/sale/plaza" },
+      { name: "오피스텔", to: "/sale/officetel" },
+      { name: "생활형숙박", to: "/sale/living" },
+      { name: "콘도/호텔", to: "/sale/hotel" }
+    ]
   },
   {
-    name: "상품 등록",
-    to: "/products",
+    name: "매매/전매",
+    icon: HandCoinsIcon,
+    to: "/resale",
     items: [
-      {
-        name: "현장 등록",
-        description: "분양/전매/매매/임대 현장 등록",
-        to: "/products/submit",
-      },
-      {
-        name: "내 상품 목록",
-        description: "내가 등록한 현장/상품 목록",
-        to: "/products/my",
-      },
-      {
-        name: "공유 상품",
-        description: "다른 회원과 공유된 상품",
-        to: "/products/shared",
-      },
-    ],
+      { name: "팔아요", to: "/resale/sell" },
+      { name: "찾아요", to: "/resale/buy" }
+    ]
   },
   {
-    name: "구인구직",
-    to: "/jobs",
+    name: "임차확정",
+    icon: KeyIcon,
+    to: "/confirmation",
     items: [
-      {
-        name: "구인 공고",
-        description: "현장별 구인 공고",
-        to: "/jobs/list",
-      },
-      {
-        name: "구직 신청",
-        description: "구직자 등록 및 신청",
-        to: "/jobs/apply",
-      },
-    ],
+      { name: "있어요", to: "/confirmation/here" },
+      { name: "구해요", to: "/confirmation/look" }
+    ]
   },
   {
-    name: "고객 관리",
-    to: "/customers",
+    name: "구인/구직",
+    icon: Users2Icon,
+    to: "/recruit",
     items: [
-      {
-        name: "고객 목록",
-        description: "상담/계약 고객 관리",
-        to: "/customers/list",
-      },
-      {
-        name: "상담 이력",
-        description: "고객 상담 이력 및 메모",
-        to: "/customers/consults",
-      },
-    ],
-  },
-  {
-    name: "마이페이지",
-    to: "/mypage",
-    items: [
-      {
-        name: "내 정보",
-        description: "개인 정보 및 명함 관리",
-        to: "/mypage/profile",
-      },
-      {
-        name: "알림 설정",
-        description: "알림 및 활동 내역",
-        to: "/mypage/notifications",
-      },
-      {
-        name: "팔로우/팔로잉",
-        description: "팔로우/팔로잉 관리",
-        to: "/mypage/follow",
-      },
-      {
-        name: "DM(쪽지)",
-        description: "1:1 쪽지함",
-        to: "/mypage/dm",
-      },
-      {
-        name: "출석체크",
-        description: "GPS 출석체크",
-        to: "/mypage/attendance",
-      },
-      {
-        name: "자기소개",
-        description: "자기소개 페이지",
-        to: "/mypage/about",
-      },
-    ],
-  },
+      { name: "분양인 오세요", to: "/recruit/people" },
+      { name: "분양 현장 찾아요", to: "/recruit/site" }
+    ]
+  }
 ];
 
 export default function Navigation({
   isLoggedIn,
   hasNotifications,
-  hasMessages,
+  hasMessages
 }: {
   isLoggedIn: boolean;
   hasNotifications: boolean;
   hasMessages: boolean;
 }) {
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   return (
-    <nav className="bg-background/50 fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-4 backdrop-blur md:px-20">
-      <div className="flex items-center">
-        <Link to="/" className="text-lg font-bold tracking-tighter">
-          wemake
+    <nav className="bg-background/70 fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-4 shadow-md backdrop-blur-md md:px-20">
+      <div className="flex items-center gap-4">
+        <Link
+          to="/"
+          className="text-primary flex items-center gap-2 text-xl font-extrabold tracking-tight"
+        >
+          <HomeIcon className="size-6" />
+          한평
         </Link>
         <Separator
           orientation="vertical"
           className="mx-4 hidden h-6 md:block"
         />
         {/* 데스크탑 메뉴 */}
-        <div className="hidden md:flex">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {menus.map((menu) => (
-                <NavigationMenuItem key={menu.name}>
-                  {menu.items ? (
-                    <>
-                      <Link to={menu.to}>
-                        <NavigationMenuTrigger>
-                          {menu.name}
-                        </NavigationMenuTrigger>
-                      </Link>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[600px] grid-cols-2 gap-3 p-4 font-light">
-                          {menu.items?.map((item) => (
-                            <NavigationMenuItem
-                              key={item.to}
-                              className={cn([
-                                "focus:bg-accent hover:bg-accent rounded-md transition-colors select-none",
-                                (item.to === "/products/promote" ||
-                                  item.to === "/jobs/submit") &&
-                                  "bg-primary/10 hover:bg-primary/20 focus:bg-primary/20 col-span-2",
-                              ])}
-                            >
-                              <NavigationMenuLink>
-                                <Link
-                                  className="block space-y-1 p-3 leading-none no-underline outline-none"
-                                  to={item.to}
-                                >
-                                  <span className="text-sm leading-none font-medium">
-                                    {item.name}
-                                  </span>
-                                  <p className="text-muted-foreground text-sm leading-snug">
-                                    {item.description}
-                                  </p>
-                                </Link>
-                              </NavigationMenuLink>
-                            </NavigationMenuItem>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </>
-                  ) : (
-                    <Link className={navigationMenuTriggerStyle()} to={menu.to}>
-                      {menu.name}
-                    </Link>
+        <div className="flex gap-2 max-[900px]:hidden">
+          {menus.map((menu) => (
+            <div
+              key={menu.name}
+              className="group relative"
+              onMouseEnter={() => setOpenMenu(menu.name)}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <Link
+                to={menu.to}
+                className={cn(
+                  "text-muted-foreground hover:text-primary hover:bg-accent flex items-center gap-1 rounded-md px-3 py-2 font-medium transition",
+                  "group-hover:bg-accent/60"
+                )}
+                tabIndex={0}
+                aria-haspopup={!!menu.items}
+                aria-expanded={openMenu === menu.name}
+                onFocus={() => setOpenMenu(menu.name)}
+                onBlur={() => setOpenMenu(null)}
+              >
+                {menu.icon && (
+                  <menu.icon className="text-primary/80 mr-1 size-4" />
+                )}
+                {menu.name}
+              </Link>
+              {menu.items && (
+                <div
+                  className={cn(
+                    "bg-popover absolute top-full left-0 z-50 min-w-[180px] rounded-lg shadow-lg",
+                    openMenu === menu.name ? "block" : "hidden"
                   )}
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+                >
+                  <ul className="py-2">
+                    {menu.items.map((item) => (
+                      <li key={item.to}>
+                        <Link
+                          to={item.to}
+                          className="text-muted-foreground hover:bg-accent hover:text-primary block rounded-md px-4 py-2 text-sm transition"
+                        >
+                          {item.icon ? (
+                            <item.icon className="mr-1 size-4" />
+                          ) : null}
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
       {/* 모바일 햄버거 메뉴 */}
-      <div className="flex items-center md:hidden">
+      <div className="hidden items-center max-[900px]:flex">
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="ghost">
               <Menu className="size-6" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-64 p-0">
+          <SheetContent side="right" className="w-72 p-0">
             <nav className="flex flex-col gap-2 p-4">
-              {menus.map((menu) =>
-                menu.items ? (
-                  <div key={menu.name} className="mb-2">
-                    <div className="font-semibold">{menu.name}</div>
-                    <div className="ml-2 flex flex-col gap-1">
+              {menus.map((menu) => (
+                <div key={menu.name} className="mb-2">
+                  <Link
+                    to={menu.to}
+                    className="text-primary hover:bg-accent/40 flex items-center gap-2 rounded px-2 py-2 font-semibold transition"
+                  >
+                    {menu.icon && (
+                      <menu.icon className="text-primary/80 mr-1 size-5" />
+                    )}
+                    {menu.name}
+                  </Link>
+                  {menu.items && (
+                    <div className="mt-1 ml-4 flex flex-col gap-1">
                       {menu.items.map((item) => (
                         <Link
                           key={item.to}
                           to={item.to}
-                          className="text-muted-foreground hover:text-foreground py-1 text-sm"
+                          className="text-muted-foreground hover:text-primary hover:bg-accent/30 rounded px-2 py-1 text-sm transition"
                         >
+                          {item.icon ? (
+                            <item.icon className="mr-1 size-4" />
+                          ) : null}
                           {item.name}
                         </Link>
                       ))}
                     </div>
-                  </div>
-                ) : (
-                  <Link
-                    key={menu.to}
-                    to={menu.to}
-                    className="py-2 font-semibold"
-                  >
-                    {menu.name}
-                  </Link>
-                ),
-              )}
+                  )}
+                </div>
+              ))}
             </nav>
           </SheetContent>
         </Sheet>
       </div>
       {/* 우측 유저/로그인 버튼 (데스크탑) */}
-      <div className="hidden items-center gap-4 md:flex">
+      <div className="flex items-center gap-4 max-[900px]:hidden">
         {isLoggedIn ? (
           <>
             <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/notifications">
+              <Link to="/my/notification">
                 <BellIcon className="size-4" />
                 {hasNotifications && (
                   <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
@@ -293,9 +232,6 @@ export default function Navigation({
             <Button size="icon" variant="ghost" asChild className="relative">
               <Link to="/my/messages">
                 <MessageCircleIcon className="size-4" />
-                {hasMessages && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
               </Link>
             </Button>
             <DropdownMenu>
@@ -315,21 +251,21 @@ export default function Navigation({
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/dashboard">
+                    <Link to="/my/dash">
                       <BarChart3Icon className="mr-2 size-4" />
-                      Dashboard
+                      대시보드
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer">
                     <Link to="/my/profile">
                       <UserIcon className="mr-2 size-4" />
-                      Profile
+                      프로필
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/settings">
+                    <Link to="/my/setting">
                       <SettingsIcon className="mr-2 size-4" />
-                      Settings
+                      설정
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -337,7 +273,7 @@ export default function Navigation({
                 <DropdownMenuItem asChild className="cursor-pointer">
                   <Link to="/auth/logout">
                     <LogOutIcon className="mr-2 size-4" />
-                    Logout
+                    로그아웃
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -345,21 +281,26 @@ export default function Navigation({
           </>
         ) : (
           <>
-            <Button asChild variant="secondary">
-              <Link to="/auth/login">Login</Link>
-            </Button>
-            <Button asChild>
-              <Link to="/auth/join">Join</Link>
+            <Button
+              asChild
+              variant="ghost"
+              className="text-muted-foreground h-8 w-8 p-0"
+              title="로그인"
+            >
+              <Link to="/auth/login">
+                <UserIcon className="size-5" />
+                <span className="sr-only">로그인</span>
+              </Link>
             </Button>
           </>
         )}
       </div>
       {/* 모바일 우측 버튼 */}
-      <div className="flex items-center gap-2 md:hidden">
+      <div className="hidden items-center gap-2 max-[900px]:flex">
         {isLoggedIn ? (
           <>
             <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/notifications">
+              <Link to="/my/notification">
                 <BellIcon className="size-5" />
                 {hasNotifications && (
                   <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
@@ -369,9 +310,6 @@ export default function Navigation({
             <Button size="icon" variant="ghost" asChild className="relative">
               <Link to="/my/messages">
                 <MessageCircleIcon className="size-5" />
-                {hasMessages && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
               </Link>
             </Button>
             <DropdownMenu>
@@ -391,21 +329,21 @@ export default function Navigation({
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/dashboard">
+                    <Link to="/my/dash">
                       <BarChart3Icon className="mr-2 size-4" />
-                      Dashboard
+                      대시보드
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer">
                     <Link to="/my/profile">
                       <UserIcon className="mr-2 size-4" />
-                      Profile
+                      프로필
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/settings">
+                    <Link to="/my/setting">
                       <SettingsIcon className="mr-2 size-4" />
-                      Settings
+                      설정
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
@@ -413,7 +351,7 @@ export default function Navigation({
                 <DropdownMenuItem asChild className="cursor-pointer">
                   <Link to="/auth/logout">
                     <LogOutIcon className="mr-2 size-4" />
-                    Logout
+                    로그아웃
                   </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -421,11 +359,16 @@ export default function Navigation({
           </>
         ) : (
           <>
-            <Button asChild variant="secondary">
-              <Link to="/auth/login">Login</Link>
-            </Button>
-            <Button asChild>
-              <Link to="/auth/join">Join</Link>
+            <Button
+              asChild
+              variant="ghost"
+              className="text-muted-foreground h-8 w-8 p-0"
+              title="로그인"
+            >
+              <Link to="/auth/login">
+                <UserIcon className="size-5" />
+                <span className="sr-only">로그인</span>
+              </Link>
             </Button>
           </>
         )}
