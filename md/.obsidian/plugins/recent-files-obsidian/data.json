@@ -1,6 +1,22 @@
 {
   "recentFiles": [
     {
+      "basename": "(답변)10.public-pages-checkpoint-template",
+      "path": "(답변)10.public-pages-checkpoint-template.md"
+    },
+    {
+      "basename": "1.Document_History",
+      "path": "1.Document_History.md"
+    },
+    {
+      "basename": "00.WebApp Planning",
+      "path": "00.WebApp Planning.md"
+    },
+    {
+      "basename": "balance",
+      "path": "Tags/model/calculator/balance.md"
+    },
+    {
       "basename": "user_onepy",
       "path": "Tags/model/users/user_onepy.md"
     },
@@ -43,14 +59,6 @@
     {
       "basename": "필요한기능",
       "path": "분양/필요한기능.md"
-    },
-    {
-      "basename": "00.WebApp Planning",
-      "path": "00.WebApp Planning.md"
-    },
-    {
-      "basename": "1.Document_History",
-      "path": "1.Document_History.md"
     },
     {
       "basename": "2-2.Task_Flow",

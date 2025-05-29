@@ -38,7 +38,10 @@
   "vaultSelector": true,
   "deleteFileOption": "trash",
   "expandedSpaces": [
-    "/"
+    "/",
+    "//Tags",
+    "//Tags/Tags/model",
+    "//Tags/Tags/model/Tags/model/calculator"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

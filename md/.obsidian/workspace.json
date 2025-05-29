@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tags/model/users/user_onepy.md",
+                "file": "(답변)10.public-pages-checkpoint-template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "user_onepy"
+              "title": "(답변)10.public-pages-checkpoint-template"
             }
           }
         ]
@@ -75,16 +75,6 @@
             }
           },
           {
-            "id": "29a945eb620ec7ad",
-            "type": "leaf",
-            "state": {
-              "type": "mk-path-view",
-              "state": {},
-              "icon": "layout-grid",
-              "title": "Navigator"
-            }
-          },
-          {
             "id": "b09fcb35102ce786",
             "type": "leaf",
             "state": {
@@ -93,8 +83,19 @@
               "icon": "clock",
               "title": "Recent Files"
             }
+          },
+          {
+            "id": "e4d6a3d7dacb485f",
+            "type": "leaf",
+            "state": {
+              "type": "mk-path-view",
+              "state": {},
+              "icon": "layout-grid",
+              "title": "Navigator"
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -114,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tags/model/users/user_onepy.md",
+                "file": "(답변)10.public-pages-checkpoint-template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -124,7 +125,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "user_onepy 의 백링크"
+              "title": "(답변)10.public-pages-checkpoint-template 의 백링크"
             }
           },
           {
@@ -201,6 +202,11 @@
   },
   "active": "e216b2429ad2b726",
   "lastOpenFiles": [
+    "1.Document_History.md",
+    "(답변)10.public-pages-checkpoint-template.md",
+    "00.WebApp Planning.md",
+    "Tags/model/calculator/balance.md",
+    "Tags/model/users/user_onepy.md",
     "Tags/model/building/center.md",
     "Tags/model/building/center_developer.md",
     "Tags/model/building/center_contractor.md",
@@ -223,11 +229,6 @@
     "Tags/model/building",
     "Tags/model/payments/payment_log.md",
     "Tags/model/payments/payment.md",
-    "Tags/model/payments/real_money_log.md",
-    "Tags/model/payments/onepy_money_log.md",
-    "Tags/model/users/user_supabase.md",
-    "Tags/model/users/user_onepy.md",
-    "Tags/model/money/onepy_money_log.md",
     "Tags/model/money",
     "Tags/model/payments",
     "Tags/model/users",

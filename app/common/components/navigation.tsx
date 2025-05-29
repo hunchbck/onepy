@@ -1,50 +1,40 @@
-import type { LucideIcon } from "lucide-react";
 import {
-  BarChart3Icon,
-  BellIcon,
   Building2Icon,
   CalculatorIcon,
   HandCoinsIcon,
   HomeIcon,
   KeyIcon,
-  LogOutIcon,
   Menu,
-  MessageCircleIcon,
-  SettingsIcon,
+  Moon,
+  Sun,
   UserIcon,
   Users2Icon
 } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router";
-import { Separator } from "~/common/components/ui/separator";
-import { cn } from "~/lib/utils";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import * as React from "react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "./ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "~/common/components/ui/accordion";
+import { Button } from "~/common/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger
+} from "~/common/components/ui/navigation-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "~/common/components/ui/sheet";
 
-interface MenuItem {
-  name: string;
-  to: string;
-  icon?: LucideIcon;
-}
-
-interface Menu {
-  name: string;
-  to: string;
-  icon?: LucideIcon;
-  items?: MenuItem[];
-}
-
-const menus: Menu[] = [
+const menus = [
   {
     name: "계산기",
     icon: CalculatorIcon,
@@ -96,283 +86,183 @@ const menus: Menu[] = [
   }
 ];
 
-export default function Navigation({
-  isLoggedIn,
-  hasNotifications,
-  hasMessages
-}: {
-  isLoggedIn: boolean;
-  hasNotifications: boolean;
-  hasMessages: boolean;
-}) {
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
+const ThemeToggle = () => {
+  const [isDark, setIsDark] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isDark) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [isDark]);
+
   return (
-    <nav className="bg-background/70 fixed top-0 right-0 left-0 z-50 flex h-16 items-center justify-between px-4 shadow-md backdrop-blur-md md:px-20">
-      <div className="flex items-center gap-4">
-        <Link
-          to="/"
-          className="text-primary flex items-center gap-2 text-xl font-extrabold tracking-tight"
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setIsDark(!isDark)}
+      className="rounded-full"
+      aria-label="Toggle theme"
+    >
+      {isDark ? (
+        <Sun className="h-[1.2rem] w-[1.2rem]" />
+      ) : (
+        <Moon className="h-[1.2rem] w-[1.2rem]" />
+      )}
+    </Button>
+  );
+};
+
+function renderMenuItem(menu: any) {
+  if (menu.items) {
+    return (
+      <NavigationMenuItem key={menu.name}>
+        <NavigationMenuTrigger>
+          {menu.icon && <menu.icon className="mr-1 size-4" />}
+          {menu.name}
+        </NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="w-56 p-2">
+            {menu.items.map((item: any) => (
+              <li key={item.to}>
+                <NavigationMenuLink asChild>
+                  <a
+                    href={item.to}
+                    className="text-muted-foreground hover:bg-muted hover:text-accent-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition"
+                  >
+                    {item.name}
+                  </a>
+                </NavigationMenuLink>
+              </li>
+            ))}
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    );
+  }
+  return (
+    <NavigationMenuItem key={menu.name}>
+      <NavigationMenuLink asChild>
+        <a
+          href={menu.to}
+          className="text-muted-foreground hover:bg-muted hover:text-accent-foreground flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition"
         >
-          <HomeIcon className="size-6" />
-          한평
-        </Link>
-        <Separator
-          orientation="vertical"
-          className="mx-4 hidden h-6 md:block"
-        />
-        {/* 데스크탑 메뉴 */}
-        <div className="flex gap-2 max-[900px]:hidden">
-          {menus.map((menu) => (
-            <div
-              key={menu.name}
-              className="group relative"
-              onMouseEnter={() => setOpenMenu(menu.name)}
-              onMouseLeave={() => setOpenMenu(null)}
+          {menu.icon && <menu.icon className="mr-1 size-4" />}
+          {menu.name}
+        </a>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  );
+}
+
+function renderMobileMenuItem(menu: any) {
+  if (menu.items) {
+    return (
+      <AccordionItem key={menu.name} value={menu.name}>
+        <AccordionTrigger className="py-0 font-semibold hover:no-underline">
+          {menu.icon && <menu.icon className="mr-1 size-4" />}
+          {menu.name}
+        </AccordionTrigger>
+        <AccordionContent className="mt-2">
+          {menu.items.map((item: any) => (
+            <a
+              key={item.to}
+              href={item.to}
+              className="text-muted-foreground hover:bg-muted hover:text-accent-foreground block rounded-md px-3 py-2 text-sm transition"
             >
-              <Link
-                to={menu.to}
-                className={cn(
-                  "text-muted-foreground hover:text-primary hover:bg-accent flex items-center gap-1 rounded-md px-3 py-2 font-medium transition",
-                  "group-hover:bg-accent/60"
-                )}
-                tabIndex={0}
-                aria-haspopup={!!menu.items}
-                aria-expanded={openMenu === menu.name}
-                onFocus={() => setOpenMenu(menu.name)}
-                onBlur={() => setOpenMenu(null)}
-              >
-                {menu.icon && (
-                  <menu.icon className="text-primary/80 mr-1 size-4" />
-                )}
-                {menu.name}
-              </Link>
-              {menu.items && (
-                <div
-                  className={cn(
-                    "bg-popover absolute top-full left-0 z-50 min-w-[180px] rounded-lg shadow-lg",
-                    openMenu === menu.name ? "block" : "hidden"
-                  )}
-                >
-                  <ul className="py-2">
-                    {menu.items.map((item) => (
-                      <li key={item.to}>
-                        <Link
-                          to={item.to}
-                          className="text-muted-foreground hover:bg-accent hover:text-primary block rounded-md px-4 py-2 text-sm transition"
-                        >
-                          {item.icon ? (
-                            <item.icon className="mr-1 size-4" />
-                          ) : null}
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+              {item.name}
+            </a>
           ))}
+        </AccordionContent>
+      </AccordionItem>
+    );
+  }
+  return (
+    <a
+      key={menu.name}
+      href={menu.to}
+      className="text-muted-foreground hover:bg-muted hover:text-accent-foreground block rounded-md px-3 py-2 text-sm font-semibold transition"
+    >
+      {menu.icon && <menu.icon className="mr-1 size-4" />}
+      {menu.name}
+    </a>
+  );
+}
+
+export default function Navigation() {
+  return (
+    <section className="border-border border-b py-4">
+      <div className="container">
+        {/* 데스크탑 네비게이션 */}
+        <nav className="hidden justify-between lg:flex">
+          <div className="flex items-center gap-6">
+            <a href="/" className="flex items-center gap-2">
+              <HomeIcon className="w-8" />
+              <span className="text-lg font-semibold">한평</span>
+            </a>
+            <div className="flex items-center">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  {menus.map((menu) => renderMenuItem(menu))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Button asChild variant="outline" size="sm">
+              <a href="/auth/login">
+                <UserIcon className="mr-1 size-4" />
+                로그인
+              </a>
+            </Button>
+          </div>
+        </nav>
+        {/* 모바일 네비게이션 */}
+        <div className="block lg:hidden">
+          <div className="flex items-center justify-between">
+            <a href="/" className="flex items-center gap-2">
+              <HomeIcon className="w-8" />
+              <span className="text-lg font-semibold">한평</span>
+            </a>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="size-4" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent className="overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle>
+                      <a href="/" className="flex items-center gap-2">
+                        <HomeIcon className="w-8" />
+                        <span className="text-lg font-semibold">한평</span>
+                      </a>
+                    </SheetTitle>
+                  </SheetHeader>
+                  <div className="my-6 flex flex-col gap-6">
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="flex w-full flex-col gap-4"
+                    >
+                      {menus.map((menu) => renderMobileMenuItem(menu))}
+                    </Accordion>
+                    <div className="mt-6 flex flex-col gap-3">
+                      <Button asChild variant="outline">
+                        <a href="/auth/login">
+                          <UserIcon className="mr-1 size-4" />
+                          로그인
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
         </div>
       </div>
-      {/* 모바일 햄버거 메뉴 */}
-      <div className="hidden items-center max-[900px]:flex">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button size="icon" variant="ghost">
-              <Menu className="size-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-72 p-0">
-            <nav className="flex flex-col gap-2 p-4">
-              {menus.map((menu) => (
-                <div key={menu.name} className="mb-2">
-                  <Link
-                    to={menu.to}
-                    className="text-primary hover:bg-accent/40 flex items-center gap-2 rounded px-2 py-2 font-semibold transition"
-                  >
-                    {menu.icon && (
-                      <menu.icon className="text-primary/80 mr-1 size-5" />
-                    )}
-                    {menu.name}
-                  </Link>
-                  {menu.items && (
-                    <div className="mt-1 ml-4 flex flex-col gap-1">
-                      {menu.items.map((item) => (
-                        <Link
-                          key={item.to}
-                          to={item.to}
-                          className="text-muted-foreground hover:text-primary hover:bg-accent/30 rounded px-2 py-1 text-sm transition"
-                        >
-                          {item.icon ? (
-                            <item.icon className="mr-1 size-4" />
-                          ) : null}
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </div>
-      {/* 우측 유저/로그인 버튼 (데스크탑) */}
-      <div className="flex items-center gap-4 max-[900px]:hidden">
-        {isLoggedIn ? (
-          <>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/notification">
-                <BellIcon className="size-4" />
-                {hasNotifications && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
-              </Link>
-            </Button>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/messages">
-                <MessageCircleIcon className="size-4" />
-              </Link>
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar>
-                  <AvatarImage src="https://github.com/serranoarevalo.png" />
-                  <AvatarFallback>N</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel className="flex flex-col">
-                  <span className="font-medium">John Doe</span>
-                  <span className="text-muted-foreground text-xs">
-                    @username
-                  </span>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/dash">
-                      <BarChart3Icon className="mr-2 size-4" />
-                      대시보드
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/profile">
-                      <UserIcon className="mr-2 size-4" />
-                      프로필
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/setting">
-                      <SettingsIcon className="mr-2 size-4" />
-                      설정
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/auth/logout">
-                    <LogOutIcon className="mr-2 size-4" />
-                    로그아웃
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        ) : (
-          <>
-            <Button
-              asChild
-              variant="ghost"
-              className="text-muted-foreground h-8 w-8 p-0"
-              title="로그인"
-            >
-              <Link to="/auth/login">
-                <UserIcon className="size-5" />
-                <span className="sr-only">로그인</span>
-              </Link>
-            </Button>
-          </>
-        )}
-      </div>
-      {/* 모바일 우측 버튼 */}
-      <div className="hidden items-center gap-2 max-[900px]:flex">
-        {isLoggedIn ? (
-          <>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/notification">
-                <BellIcon className="size-5" />
-                {hasNotifications && (
-                  <div className="absolute top-1.5 right-1.5 size-2 rounded-full bg-red-500" />
-                )}
-              </Link>
-            </Button>
-            <Button size="icon" variant="ghost" asChild className="relative">
-              <Link to="/my/messages">
-                <MessageCircleIcon className="size-5" />
-              </Link>
-            </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Avatar>
-                  <AvatarImage src="https://github.com/serranoarevalo.png" />
-                  <AvatarFallback>N</AvatarFallback>
-                </Avatar>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel className="flex flex-col">
-                  <span className="font-medium">John Doe</span>
-                  <span className="text-muted-foreground text-xs">
-                    @username
-                  </span>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/dash">
-                      <BarChart3Icon className="mr-2 size-4" />
-                      대시보드
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/profile">
-                      <UserIcon className="mr-2 size-4" />
-                      프로필
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link to="/my/setting">
-                      <SettingsIcon className="mr-2 size-4" />
-                      설정
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link to="/auth/logout">
-                    <LogOutIcon className="mr-2 size-4" />
-                    로그아웃
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </>
-        ) : (
-          <>
-            <Button
-              asChild
-              variant="ghost"
-              className="text-muted-foreground h-8 w-8 p-0"
-              title="로그인"
-            >
-              <Link to="/auth/login">
-                <UserIcon className="size-5" />
-                <span className="sr-only">로그인</span>
-              </Link>
-            </Button>
-          </>
-        )}
-      </div>
-    </nav>
+    </section>
   );
 }
