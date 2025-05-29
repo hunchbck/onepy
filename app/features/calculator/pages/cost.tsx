@@ -39,12 +39,12 @@ export function Cost({
 
   return (
     <div className="ring-primary/20 rounded-xl bg-white/90 p-0 shadow-md ring-1">
-      <div className="bg-primary/10 text-primary flex items-center justify-between rounded-t-xl px-6 py-3 font-semibold">
-        <span>개월</span>
-        <span>월비용</span>
-        <span>누적액</span>
-        <span>투입자금</span>
-        <span>공급가대비</span>
+      <div className="bg-primary/10 text-primary flex items-center justify-between rounded-t-xl px-6 py-3 text-center font-semibold">
+        <span className="w-8 min-w-8 text-center">개월</span>
+        <span className="w-16 min-w-16 text-center">월비용</span>
+        <span className="w-24 min-w-20 text-center">누적비용</span>
+        <span className="w-32 min-w-24 text-center">투입자금</span>
+        <span className="w-20 min-w-16 text-center">공급가대비</span>
       </div>
       <div className="divide-primary/10 divide-y">
         {Array.from({ length: emptyMonth }).map((_, i) => {
@@ -65,17 +65,19 @@ export function Cost({
               key={i}
               className="hover:bg-primary/5 flex items-center justify-between px-6 py-2 text-sm transition"
             >
-              <span className="w-10 text-right text-gray-500">{i + 1}</span>
-              <span className="w-20 text-right font-medium text-blue-700">
+              <span className="w-8 min-w-8 text-center text-gray-500">
+                {i + 1}
+              </span>
+              <span className="w-16 min-w-16 text-center font-medium text-blue-700">
                 {monthCost.toLocaleString()}
               </span>
-              <span className="w-24 text-right font-semibold text-orange-600">
+              <span className="w-24 min-w-20 text-center font-semibold text-orange-600">
                 {totalCost.toLocaleString()}
               </span>
-              <span className="text-primary w-28 text-right font-bold">
+              <span className="text-primary w-32 min-w-24 text-center font-bold">
                 {inputFunds.toLocaleString()}
               </span>
-              <span className="w-20 text-right text-gray-700">
+              <span className="w-20 min-w-16 text-center text-gray-700">
                 {supplyRatio}%
               </span>
             </div>

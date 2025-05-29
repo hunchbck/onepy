@@ -17,7 +17,6 @@ import {
 import { Label } from "~/common/components/ui/label";
 import { ButtonBalance } from "../components/button-balance";
 import { InputNumber } from "../components/input-number";
-import { ACQUISITION_TAX_RATIO } from "../constants";
 import type { Route } from "./+types/balance-page";
 import type { ActionState } from "./balance-helpers";
 import { balanceCompute, initialState } from "./balance-helpers";
@@ -96,7 +95,7 @@ export default function Balance(props: Route.ComponentProps) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between pt-10">
       <div className="flex flex-col gap-10 px-6 py-8">
-        <Card className="w-full max-w-3xl shadow-lg">
+        <Card className="w-full max-w-2xl shadow-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-2xl font-bold">
               <CalculatorIcon className="text-primary size-7" />
@@ -270,9 +269,7 @@ export default function Balance(props: Route.ComponentProps) {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="middleLoan" className="mb-1 block">
-                        중도금
-                      </Label>
+                      <span className="m-0 p-0">중도금</span>
                       <span className="text-xs">-부가세 포함</span>
                       <div className="font-semibold">{values.middleLoan}원</div>
                     </div>
@@ -295,17 +292,27 @@ export default function Balance(props: Route.ComponentProps) {
                         errors={state.fieldErrors?.balanceLoanRatio}
                         placeholder="잔금대출비율"
                         type="text"
-                        required
                       />
                     </div>
                     <div>
-                      <Label htmlFor="balanceLoan" className="mb-1 block">
-                        잔금대출액
-                      </Label>
+                      <span className="m-0 p-0">잔금대출액</span>
                       <span className="text-xs">-부가세 제외</span>
-                      <div className="font-semibold">
-                        {values.balanceLoan}원
-                      </div>
+                      <InputNumber
+                        name="balanceLoan"
+                        value={
+                          values.balanceLoan !== undefined
+                            ? String(values.balanceLoan)
+                            : ""
+                        }
+                        onValueChange={(value) =>
+                          handleValueChange("balanceLoan", value)
+                        }
+                        onFocus={() => handleFocus("balanceLoan")}
+                        onBlur={() => handleBlur("balanceLoan")}
+                        errors={state.fieldErrors?.balanceLoan}
+                        placeholder="잔금대출액"
+                        type="text"
+                      />
                     </div>
                     <div>
                       <Label htmlFor="middleSurtax" className="mb-1 block">
@@ -316,15 +323,13 @@ export default function Balance(props: Route.ComponentProps) {
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="acquisitionTax" className="mb-1 block">
-                        취득세({ACQUISITION_TAX_RATIO}%)
-                      </Label>
+                      <span className="m-0 p-0">취득세(5%)</span>
                       <span className="text-xs">-등기비 포함</span>
                       <div className="font-semibold">
                         {values.acquisitionTax}원
                       </div>
                     </div>
-                    <div className="ring-2">
+                    <div className="flex flex-col items-center ring-2">
                       <Label htmlFor="requiredCash" className="text-xl">
                         등기시 필요현금
                       </Label>
@@ -333,22 +338,18 @@ export default function Balance(props: Route.ComponentProps) {
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="refundAmount" className="mb-1 block">
-                        환급액
-                      </Label>
+                      <span className="m-0 p-0">환급액</span>
                       <span className="text-xs">-잔금부가세</span>
                       <div className="font-semibold">
                         {values.refundAmount}원
                       </div>
                     </div>
-                    <div className="ring-2">
-                      <Label htmlFor="realFunds" className="text-xs">
-                        실질자금
-                      </Label>
-                      <span className="text-xs">-인테리어 제외</span>
+                    <div className="flex flex-col items-center ring-2">
+                      <span className="m-0 p-0">실질자금</span>
+                      <span className="text-xs">(인테리어 제외)</span>
                       <div className="font-semibold">{values.realFunds}원</div>
                     </div>
-                    <div className="ring-2">
+                    <div className="flex flex-col items-center ring-2">
                       <Label htmlFor="totalFunds" className="text-xl">
                         소요자금 합계
                       </Label>
@@ -469,9 +470,7 @@ export default function Balance(props: Route.ComponentProps) {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="contractArea" className="mb-1 block">
-                          계약면적(㎡)
-                        </Label>
+                        <span className="m-0 p-0">계약면적(㎡)</span>
                         {values.contractArea && (
                           <span className="text-xs">
                             -{values.contractAreaPy}평
@@ -495,12 +494,7 @@ export default function Balance(props: Route.ComponentProps) {
                         />
                       </div>
                       <div>
-                        <Label
-                          htmlFor="maintenanceFeeMonth"
-                          className="mb-1 block"
-                        >
-                          관리비
-                        </Label>
+                        <span className="m-0 p-0">관리비</span>
                         {values.contractArea && (
                           <span className="text-xs">
                             -평당 {values.perPy}원
@@ -545,11 +539,11 @@ export default function Balance(props: Route.ComponentProps) {
                           required
                         />
                       </div>
-                      <div className="ring-2">
-                        <Label htmlFor="amountOfLoss" className="mb-1 block">
+                      <div className="flex flex-col items-center ring-2">
+                        <Label htmlFor="amountOfLoss" className="text-xl">
                           누적손실비용
                         </Label>
-                        <div className="font-semibold">
+                        <div className="text-center text-xl text-orange-700">
                           {values.amountOfLoss}원
                         </div>
                         <span className="text-xs text-orange-500">
