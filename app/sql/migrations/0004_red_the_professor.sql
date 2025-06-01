@@ -1,0 +1,1 @@
+ALTER TABLE "user_onepy" ADD COLUMN "name" varchar(32) NOT NULL;

@@ -1,0 +1,7 @@
+ALTER TABLE "user_onepy" ALTER COLUMN "certification" SET DEFAULT '{"email":false,"mobile":false}'::jsonb;--> statement-breakpoint
+ALTER TABLE "user_onepy" ALTER COLUMN "stats" SET DEFAULT '{"money":{"onepy_money":10000,"real_money":0},"follower":{"sale":0,"buy":0},"following":{"sale":0,"buy":0},"like":{"user":0,"product":0,"community":0},"dislike":{"user":0,"product":0,"community":0}}'::jsonb;--> statement-breakpoint
+ALTER TABLE "user_onepy" ADD COLUMN "phone" varchar(32);--> statement-breakpoint
+ALTER TABLE "onepy_money_log" ADD CONSTRAINT "onepy_money_log_user_id_user_onepy_user_onepy_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user_onepy"("user_onepy_id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "payment" ADD CONSTRAINT "payment_user_id_user_onepy_user_onepy_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user_onepy"("user_onepy_id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "payment_log" ADD CONSTRAINT "payment_log_payment_id_payment_payment_id_fk" FOREIGN KEY ("payment_id") REFERENCES "public"."payment"("payment_id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "real_money_log" ADD CONSTRAINT "real_money_log_user_id_user_onepy_user_onepy_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user_onepy"("user_onepy_id") ON DELETE cascade ON UPDATE no action;

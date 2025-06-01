@@ -1,14 +1,16 @@
 # user_onepy
 
-| 필드명        | 타입         | 필수 | 기본값 | min | max | 설명                                  |
-| ------------- | ------------ | ---- | ------ | --- | --- | ------------------------------------- |
-| user_onepy_id | uuid         | Y    |        |     |     | PK, [[user_supabase.id]], FK, CASCADE |
-| nickname      | varchar(32)  | Y    |        | 2   | 32  | 닉네임, 고유, 최소 2자, 최대 32자     |
-| profile_image | varchar(255) | N    |        |     | 255 | 프로필 이미지 URL                     |
-| certification | jsonb        | N    | {}     |     |     | 인증 정보 (이메일, 휴대폰 등)         |
-| stats         | jsonb        | N    | {}     |     |     | 통계 정보 (팔로워, 팔로잉 등)         |
-| created_at    | timestamptz  | Y    | now()  |     |     | 생성일시                              |
-| updated_at    | timestamptz  | Y    | now()  |     |     | 수정일시                              |
+| 필드명           | 타입           | 필수  | 기본값   | min | max | 설명                                    |
+| ------------- | ------------ | --- | ----- | --- | --- | ------------------------------------- |
+| user_onepy_id | uuid         | Y   |       |     |     | PK, [[user_supabase.id]], FK, CASCADE |
+| name          | varchar(32)  | Y   |       | 2   | 32  | 이름, 최소 2자, 최대 32자                     |
+| nickname      | varchar(32)  | Y   |       | 2   | 32  | 닉네임, 고유, 최소 2자, 최대 32자                |
+| phone         | varchar(14)  | Y   |       | 10  | 14  | 전화번호,고유, 최소 10자, 최대 14자               |
+| profile_image | varchar(255) | N   |       |     | 255 | 프로필 이미지 URL                           |
+| certification | jsonb        | N   | {}    |     |     | 인증 정보 (이메일, 휴대폰 등)                    |
+| stats         | jsonb        | N   | {}    |     |     | 통계 정보 (팔로워, 팔로잉 등)                    |
+| created_at    | timestamptz  | Y   | now() |     |     | 생성일시                                  |
+| updated_at    | timestamptz  | Y   | now() |     |     | 수정일시                                  |
 
 ## 제약조건
 
@@ -23,41 +25,44 @@
 
 ```json
 {
-  "email": true,
-  "mobile": true,
+  "email": false,
+  "mobile": false,
   "추가인증": false
 }
 ```
 
 - 이메일, 모바일 등 다양한 인증 항목을 자유롭게 추가할 수 있습니다.
 
-#### stats 예시
+#### stats 초기값
 
 ```json
 {
-  "balance": 5000,
+  "money": {
+    "onepy_money": 10000,
+    "real_money": 0
+  },
   "follower": {
-    "sale": 10,
-    "buy": 5
+    "sale": 0,
+    "buy": 0
   },
   "following": {
-    "sale": 2,
-    "buy": 8
+    "sale": 0,
+    "buy": 0
   },
   "like": {
-    "user": 12,
-    "product": 34,
-    "community": 56
+    "user": 0,
+    "product": 0,
+    "community": 0
   },
   "dislike": {
-    "user": 1,
-    "product": 2,
-    "community": 3
+    "user": 0,
+    "product": 0,
+    "community": 0
   }
 }
 ```
 
-- balance: 한평머니 잔액
+- money: 한평/리얼얼머니 잔액
 - like/dislike: 각각 user(회원), product(상품), community(커뮤니티 글)별로 분류하여 집계
 - follower/following: 기존과 동일하게 판매/구매 회원별로 분류
 
@@ -66,7 +71,9 @@
 ## 주요 포인트 (drizzle-orm 기준)
 
 - PK: user_onepy_id (uuid, [[user_supabase.id]] 참조, ON DELETE CASCADE)
+- name: varchar(32)
 - nickname: varchar(32), 고유(unique)
+- phone: varchar(14), 고유(unique)
 - profile_image: varchar(255)
 - certification: jsonb, default {}
 - stats: jsonb, default {}

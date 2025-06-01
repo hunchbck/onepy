@@ -16,10 +16,21 @@ export const userOnepy = pgTable(
       .primaryKey()
       .notNull()
       .references(() => userSupabase.id, { onDelete: "cascade" }),
+    name: varchar("name", { length: 32 }).notNull(),
     nickname: varchar("nickname", { length: 32 }).notNull(),
+    phone: varchar("phone", { length: 32 }),
     profileImage: varchar("profile_image", { length: 255 }),
-    certification: jsonb("certification").default({}),
-    stats: jsonb("stats").default({}),
+    certification: jsonb("certification").default({
+      email: false,
+      mobile: false
+    }),
+    stats: jsonb("stats").default({
+      money: { onepy_money: 10000, real_money: 0 },
+      follower: { sale: 0, buy: 0 },
+      following: { sale: 0, buy: 0 },
+      like: { user: 0, product: 0, community: 0 },
+      dislike: { user: 0, product: 0, community: 0 }
+    }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

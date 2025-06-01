@@ -4,8 +4,6 @@ import { Button } from "~/common/components/ui/button";
 import { Separator } from "~/common/components/ui/separator";
 import {
   AppleIcon,
-  DiscordIcon,
-  GithubIcon,
   GoogleIcon,
   KakaoIcon,
   LineIcon
@@ -16,7 +14,7 @@ export function AuthButtons() {
     <div className="flex w-full flex-col items-center gap-10">
       <div className="flex w-full flex-col items-center gap-2">
         <Separator className="w-full" />
-        <span className="text-xs font-medium uppercase text-muted-foreground">
+        <span className="text-muted-foreground text-xs font-medium uppercase">
           Or continue with
         </span>
         <Separator className="w-full" />
@@ -46,7 +44,7 @@ export function AuthButtons() {
             Continue with Line
           </Link>
         </Button>
-        <Button variant="outline" className="w-full" asChild>
+        {/* <Button variant="outline" className="w-full" asChild>
           <Link to="/auth/social/github/start">
             <GithubIcon />
             Continue with Github
@@ -57,7 +55,7 @@ export function AuthButtons() {
             <DiscordIcon />
             Continue with Discord
           </Link>
-        </Button>
+        </Button> */}
         <Button variant="outline" className="w-full" asChild>
           <Link to="/auth/otp/start">
             <LockIcon className="size-4" />

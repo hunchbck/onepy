@@ -1,5 +1,5 @@
-import { FlickeringGrid } from "components/magicui/flickering-grid";
 import { Outlet } from "react-router";
+import { FlickeringGrid } from "~/common/components/ui/magicui/flickering-grid";
 
 export default function AuthLayout() {
   return (

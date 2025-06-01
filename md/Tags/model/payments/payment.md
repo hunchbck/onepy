@@ -1,26 +1,29 @@
-# payment
+# payment (결제 집계)
 
-| 필드명       | 타입          | 필수 | 기본값 | min  | max | 설명                  |
-| ------------ | ------------- | ---- | ------ | ---- | --- | --------------------- |
-| payment_id   | bigserial     | Y    |        | 1    |     | PK, 자동 증가         |
-| user_id      | uuid          | Y    |        |      |     | [[user_onepy.id]], FK |
-| status       | varchar(16)   | Y    |        |      | 16  | 결제 상태             |
-| total_amount | numeric(12,2) | Y    |        | 0.01 |     | 총 결제 금액          |
-| paid_amount  | numeric(12,2) | Y    | 0      | 0    |     | 실제 결제된 금액      |
-| money_amount | int4          | Y    | 0      | 0    |     | 한평머니 사용 금액    |
-| meta         | jsonb         | N    | {}     |      |     | 상세 정보             |
-| created_at   | timestamptz   | Y    | now()  |      |     | 생성일시              |
-| updated_at   | timestamptz   | Y    | now()  |      |     | 수정일시              |
+- 한 결제에 여러 머니 로그(onepy_money_log, real_money_log)가 연결될 수 있음
+- meta에 머니별 상세내역(한평머니 얼마, 실제머니 얼마 등) 기록
+- 결제 상태 변경(payment_log)과 머니 로그 연결은 payment_log.meta에 id 배열로 관리
 
-## 제약조건
+---
 
-- id: PK, BIGSERIAL
-- user_id: FK(user_onepy.id), ON DELETE CASCADE
-- status: NOT NULL, 최대 16자
-- total_amount: NOT NULL, 0.01 이상 (CHECK (total_amount >= 0.01))
-- paid_amount: NOT NULL, 0 이상 (CHECK (paid_amount >= 0))
-- money_amount: NOT NULL, 0 이상 (CHECK (money_amount >= 0))
-- created_at, updated_at: NOT NULL, 기본값 now()
+| 필드명           | 타입          | 필수  | 기본값   | min | max | 설명                |
+| ------------- | ----------- | --- | ----- | --- | --- | ----------------- |
+| payment_id    | bigserial   | Y   |       | 1   |     | PK, 자동 증가         |
+| user_onepy_id | uuid        | Y   |       |     |     | user_onepy_id, FK |
+| status        | varchar(16) | Y   |       |     | 16  | 결제 상태             |
+| total_amount  | int4        | Y   |       |     |     | 총 결제 금액           |
+| real_amount   | int4        | Y   | 0     | 0   |     | 실제 결제된 금액         |
+| onepy_amount  | int4        | Y   | 0     | 0   |     | 한평머니 사용 금액        |
+| meta          | jsonb       | N   | {}    |     |     | 머니별 상세내역 등        |
+| created_at    | timestamptz | Y   | now() |     |     | 생성일시              |
+
+---
+
+## 상세 설명
+
+- **meta**: 한 결제에 사용된 머니별 상세내역(예: `{ \"onepy_money\": 5000, \"real_money\": 5000 }`)
+- **한 결제(payment)에서 여러 머니 로그가 연결될 수 있음**
+- **집계(총결제, 총사용 등)는 쿼리로 합산, 필요시 user.stats에 캐싱**
 
 ---
 
@@ -28,26 +31,43 @@
 
 ```json
 {
-  "id": "uuid",
-  "user_id": "uuid",
-  "method": "card",
-  "amount": 10000,
+  "payment_id": 1,
+  "user_onepy_id": "uuid",
   "status": "success",
+  "total_amount": 10000,
+  "real_amount": 5000,
+  "onepy_amount": 5000,
   "meta": {
-    "card_company": "신한카드",
-    "installment": 3
+    "onepy_money_log_ids": [1],
+    "real_money_log_ids": [2,3]
   },
-  "created_at": "2024-06-01T12:00:00Z",
-  "updated_at": "2024-06-01T12:00:00Z"
+  "created_at": "2024-06-01T12:00:00Z"
 }
 ```
 
 ---
 
-### 테이블 관계 및 제약조건
+### 관계 및 활용 시나리오
 
 - **user_id**: [[user_onepy]] 테이블의 id와 1:N 관계 (FK, ON DELETE CASCADE)
-  - 회원이 삭제되면 관련 payment 이력도 자동 삭제됨
+- **한 결제에서 한평머니와 실제머니를 복합적으로 사용할 수 있음**
+- **결제 상태 변경(payment_log)과 머니 로그 연결은 payment_log.meta에 id 배열로 관리**
+
+---
+
+## 제약조건
+
+- id: PK, BIGSERIAL
+- user_onepy_id: FK(user_onepy.user_onepy_id), ON DELETE CASCADE
+- status: NOT NULL, 최대 16자
+- total_amount: NOT NULL
+- created_at, updated_at: NOT NULL, 기본값 now()
+
+---
+
+### 테이블 관계 및 제약조건
+
+- **user_onepy_id**: [[user_onepy]] 테이블의 id와 1:N 관계 (FK, ON DELETE CASCADE)
 - **status**: 결제 상태(성공, 실패, 환불 등)
 - **meta**: 결제 관련 추가 정보(카드사, 할부 등)
 
@@ -64,21 +84,20 @@
 
 - **한평머니**의 지급/사용/환불 등 모든 이력 기록
 - 지급/사용 사유, 금액, 잔액, 관련 테이블 등 상세 기록
-- FK: user_id → [[user_onepy]]
-- 예시: 회원가입 축하 지급, 이벤트 지급, 한평머니로 상품 결제, 한평머니 환불 등
+- FK: user_onepy_id → [[user_onepy]].user_onepy_id
 
 ### 2. [[real_money_log]]
 
 - **실제 현금 결제/환불/사용** 등 모든 이력 기록
-- 결제/사용/환불 사유, 금액, 결제수단, 관련 테이블 등 상세 기록
-- FK: user_id → [[user_onepy]]
+- 결제/사용/환불 사유, 금액, 잔액, 결제수단, 관련 테이블 등 상세 기록
+- FK: user_onepy_id → [[user_onepy]].user_onepy_id
 - 예시: 카드 결제, 계좌이체 결제, 현금 환불, 현금 사용 등
 
 ### 3. [[payment]]
 
 - 실제 결제(카드, 계좌이체, 한평머니 등) 집계 및 상태 관리
 - 결제수단, 금액, 상태, 추가 정보 등 기록
-- FK: user_id → [[user_onepy]]
+- FK: user_onepy_id → [[user_onepy]].user_onepy_id
 - 예시: 결제 요청, 결제 성공/실패/환불 등 전체 결제의 집계 및 상태 관리
 
 ### 4. [[payment_log]]

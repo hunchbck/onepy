@@ -1,14 +1,14 @@
 import { makeSSRClient } from "~/supa-client";
 
-export const checkUsernameExists = async (
+export const checkNicknameExists = async (
   request: Request,
-  { username }: { username: string }
+  { nickname }: { nickname: string }
 ) => {
   const { client } = makeSSRClient(request);
   const { error } = await client
-    .from("profiles")
-    .select("profile_id")
-    .eq("username", username)
+    .from("user_onepy")
+    .select("user_id")
+    .eq("nickname", nickname)
     .single();
   if (error) {
     return false;

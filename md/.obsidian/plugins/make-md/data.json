@@ -41,7 +41,10 @@
     "/",
     "//Tags",
     "//Tags/Tags/model",
-    "//Tags/Tags/model/Tags/model/calculator"
+    "//Tags/Tags/model/Tags/model/calculator",
+    "//Tags/Tags/model/Tags/model/payments",
+    "//Tags/Tags/model/Tags/model/moneys",
+    "//Tags/Tags/model/Tags/model/users"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

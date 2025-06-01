@@ -29,6 +29,34 @@
       "when": 1748378845386,
       "tag": "0003_silky_jamie_braddock",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1748559656562,
+      "tag": "0004_red_the_professor",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1748802046232,
+      "tag": "0005_harsh_hairball",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1748809790166,
+      "tag": "0006_thin_big_bertha",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1748810207510,
+      "tag": "0007_great_true_believers",
+      "breakpoints": true
     }
   ]
 }
