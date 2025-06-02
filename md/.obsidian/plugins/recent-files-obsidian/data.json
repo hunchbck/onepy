@@ -1,6 +1,78 @@
 {
   "recentFiles": [
     {
+      "basename": "1.Document_History",
+      "path": "1.Document_History.md"
+    },
+    {
+      "basename": "00.WebApp Planning",
+      "path": "00.WebApp Planning.md"
+    },
+    {
+      "basename": "3-3.Membership_System",
+      "path": "3-3.Membership_System.md"
+    },
+    {
+      "basename": "3-5.Grade_Scoring_Policy",
+      "path": "3-5.Grade_Scoring_Policy.md"
+    },
+    {
+      "basename": "3-4.CRUD",
+      "path": "3-4.CRUD.md"
+    },
+    {
+      "basename": "3-2.State_Value",
+      "path": "3-2.State_Value.md"
+    },
+    {
+      "basename": "3-1.Service_Use_Policy",
+      "path": "3-1.Service_Use_Policy.md"
+    },
+    {
+      "basename": "2-8.Functional_Specification",
+      "path": "2-8.Functional_Specification.md"
+    },
+    {
+      "basename": "2-7.User_Flow",
+      "path": "2-7.User_Flow.md"
+    },
+    {
+      "basename": "2-6.Flow_Chart",
+      "path": "2-6.Flow_Chart.md"
+    },
+    {
+      "basename": "2-5.Screen_Description",
+      "path": "2-5.Screen_Description.md"
+    },
+    {
+      "basename": "2-4.WireFrame",
+      "path": "2-4.WireFrame.md"
+    },
+    {
+      "basename": "2-3.Information_Architecture",
+      "path": "2-3.Information_Architecture.md"
+    },
+    {
+      "basename": "2-2.Task_Flow",
+      "path": "2-2.Task_Flow.md"
+    },
+    {
+      "basename": "2-1.Menu_Structure",
+      "path": "2-1.Menu_Structure.md"
+    },
+    {
+      "basename": "user_onepy",
+      "path": "Tags/model/users/user_onepy.md"
+    },
+    {
+      "basename": "(답변)10.public-pages-checkpoint-template",
+      "path": "(답변)10.public-pages-checkpoint-template.md"
+    },
+    {
+      "basename": "필요한기능",
+      "path": "분양/필요한기능.md"
+    },
+    {
       "basename": "onepy_money_log",
       "path": "Tags/model/payments/onepy_money_log.md"
     },
@@ -11,14 +83,6 @@
     {
       "basename": "payment",
       "path": "Tags/model/payments/payment.md"
-    },
-    {
-      "basename": "user_onepy",
-      "path": "Tags/model/users/user_onepy.md"
-    },
-    {
-      "basename": "3-5.Grade_Scoring_Policy",
-      "path": "3-5.Grade_Scoring_Policy.md"
     },
     {
       "basename": "user_onepy.id",
@@ -33,40 +97,12 @@
       "path": "Tags/model/calculator/balance.md"
     },
     {
-      "basename": "1.Document_History",
-      "path": "1.Document_History.md"
-    },
-    {
-      "basename": "(답변)10.public-pages-checkpoint-template",
-      "path": "(답변)10.public-pages-checkpoint-template.md"
-    },
-    {
-      "basename": "00.WebApp Planning",
-      "path": "00.WebApp Planning.md"
-    },
-    {
       "basename": "center",
       "path": "Tags/model/building/center.md"
     },
     {
       "basename": "user_supabase",
       "path": "Tags/model/users/user_supabase.md"
-    },
-    {
-      "basename": "3-3.Membership_System",
-      "path": "3-3.Membership_System.md"
-    },
-    {
-      "basename": "2-1.Menu_Structure",
-      "path": "2-1.Menu_Structure.md"
-    },
-    {
-      "basename": "필요한기능",
-      "path": "분양/필요한기능.md"
-    },
-    {
-      "basename": "2-2.Task_Flow",
-      "path": "2-2.Task_Flow.md"
     }
   ],
   "omittedPaths": [],

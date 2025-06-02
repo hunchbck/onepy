@@ -28,14 +28,10 @@ export const makeSSRClient = (request: Request) => {
     process.env.SUPABASE_ANON_KEY!,
     {
       cookies: {
-        async getAll() {
-          const cookies = parseCookieHeader(
-            request.headers.get("cookie") ?? ""
+        getAll() {
+          return parseCookieHeader(request.headers.get("Cookie") ?? "").map(
+            (c) => ({ name: c.name, value: c.value ?? "" })
           );
-          return cookies.map(({ name, value }) => ({
-            name,
-            value: value ?? ""
-          }));
         },
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => {

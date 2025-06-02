@@ -12,7 +12,8 @@ import {
 import { Settings } from "luxon";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
-import Navigation from "./common/components/navigation";
+import { Footer } from "./common/components/footer";
+import { Navigation } from "./common/components/navigation";
 import { getUserById } from "./features/users/queries";
 import { cn } from "./lib/utils";
 import { makeSSRClient } from "./supa-client";
@@ -57,8 +58,9 @@ export const loader = async ({ request }: Route.ActionArgs) => {
   const {
     data: { user }
   } = await client.auth.getUser();
+  console.log("?????", user, "?????");
   if (user) {
-    const profile = await getUserById(client, user?.id);
+    const profile = await getUserById(client, { id: user.id });
     return { user, profile };
   }
   return { user: null, profile: null };
@@ -73,14 +75,14 @@ export default function App({ loaderData }: Route.ComponentProps) {
   return (
     <div
       className={cn({
-        "px-5 py-28 lg:px-20": !pathname.includes("/auth/"),
+        "px-5 py-5 lg:px-20": !pathname.includes("/auth/"),
         "animate-pulse transition-opacity": isLoading
       })}
     >
       {pathname.includes("/auth") ? null : (
         <Navigation
           isLoggedIn={isLoggedIn}
-          username={loaderData.profile?.username}
+          nickname={loaderData.profile?.nickname}
           name={loaderData.profile?.name}
           avatar={loaderData.profile?.avatar}
           hasNotifications={true}
@@ -88,6 +90,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
         />
       )}
       <Outlet />
+      {pathname.includes("/auth") ? null : <Footer />}
     </div>
   );
 }
@@ -117,6 +120,9 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
           <code>{stack}</code>
         </pre>
       )}
+      {typeof error === "object" && error && "message" in error ? (
+        <p>{(error as Error).message}</p>
+      ) : null}
     </main>
   );
 }

@@ -44,7 +44,8 @@
     "//Tags/Tags/model/Tags/model/calculator",
     "//Tags/Tags/model/Tags/model/payments",
     "//Tags/Tags/model/Tags/model/moneys",
-    "//Tags/Tags/model/Tags/model/users"
+    "//Tags/Tags/model/Tags/model/users",
+    "//분양"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

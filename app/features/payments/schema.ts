@@ -31,8 +31,8 @@ export const payment = pgTable("payment", {
     .references(() => userOnepy.userOnepyId, { onDelete: "cascade" }), // FK(user_onepy.id)
   status: varchar("status", { length: 16 }).notNull(),
   totalAmount: integer("total_amount").notNull(),
-  realAmount: integer("paid_amount").notNull().default("0"),
-  onepyAmount: integer("money_amount").notNull().default("0"),
+  realAmount: integer("paid_amount").notNull().default(0),
+  onepyAmount: integer("money_amount").notNull().default(0),
   meta: jsonb("meta").default({}),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

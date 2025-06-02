@@ -6,7 +6,7 @@
 | name          | varchar(32)  | Y   |       | 2   | 32  | 이름, 최소 2자, 최대 32자                     |
 | nickname      | varchar(32)  | Y   |       | 2   | 32  | 닉네임, 고유, 최소 2자, 최대 32자                |
 | phone         | varchar(14)  | Y   |       | 10  | 14  | 전화번호,고유, 최소 10자, 최대 14자               |
-| profile_image | varchar(255) | N   |       |     | 255 | 프로필 이미지 URL                           |
+| avatar        | varchar(255) | N   |       |     | 255 | 프로필 이미지 URL                           |
 | certification | jsonb        | N   | {}    |     |     | 인증 정보 (이메일, 휴대폰 등)                    |
 | stats         | jsonb        | N   | {}    |     |     | 통계 정보 (팔로워, 팔로잉 등)                    |
 | created_at    | timestamptz  | Y   | now() |     |     | 생성일시                                  |

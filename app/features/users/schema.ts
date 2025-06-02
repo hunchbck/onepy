@@ -1,6 +1,7 @@
 import {
   boolean,
   jsonb,
+  pgSchema,
   pgTable,
   serial,
   timestamp,
@@ -15,11 +16,11 @@ export const userOnepy = pgTable(
     userOnepyId: uuid("user_onepy_id")
       .primaryKey()
       .notNull()
-      .references(() => userSupabase.id, { onDelete: "cascade" }),
+      .references(() => users.id, { onDelete: "cascade" }),
     name: varchar("name", { length: 32 }).notNull(),
     nickname: varchar("nickname", { length: 32 }).notNull(),
     phone: varchar("phone", { length: 32 }),
-    profileImage: varchar("profile_image", { length: 255 }),
+    avatar: varchar("avatar", { length: 255 }),
     certification: jsonb("certification").default({
       email: false,
       mobile: false
@@ -48,9 +49,8 @@ export const userOnepy = pgTable(
 );
 
 // user_supabase는 외부 인증 테이블이므로 아래와 같이 참조만 명시
-const userSupabase = pgTable("user_supabase", {
-  id: uuid("id").primaryKey().notNull()
-  // ... 기타 필드 필요시 추가
+const users = pgSchema("auth").table("users", {
+  id: uuid().primaryKey()
 });
 
 // 회사 테이블

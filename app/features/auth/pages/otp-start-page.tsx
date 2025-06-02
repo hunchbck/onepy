@@ -48,7 +48,7 @@ export default function OtpStartPage({ actionData }: Route.ComponentProps) {
       <div className="flex w-full max-w-md flex-col items-center justify-center gap-10">
         <div className="text-center">
           <h1 className="text-2xl font-semibold">Log in with OTP</h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             We will send a 4-digit code to log in to your account.
           </p>
         </div>

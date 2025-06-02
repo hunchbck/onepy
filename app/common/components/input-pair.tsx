@@ -31,6 +31,7 @@ function formatPhoneNumber(value: string) {
 export default function InputPair({
   label,
   description,
+  error,
   textArea = false,
   onChange,
   type,
@@ -40,46 +41,51 @@ export default function InputPair({
 }: {
   label?: string;
   description?: string;
+  error?: string;
   textArea?: boolean;
 } & InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>) {
-  function handleChange(
+  function handlePhoneChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    if ((type === "text" || id === "phone" || name === "phone") && !textArea) {
-      const formatted = formatPhoneNumber(e.target.value);
-      e.target.value = formatted;
-      if (onChange) onChange(e);
-    } else {
-      if (onChange) onChange(e);
-    }
+    const formatted = formatPhoneNumber(e.target.value);
+    e.target.value = formatted;
+    if (onChange) onChange(e);
   }
 
+  const isPhoneField = id === "phone" || name === "phone";
+
   return (
-    <div className="flex flex-col space-y-2">
-      <Label htmlFor={id} className="flex flex-col gap-1 text-left">
-        {label}
-        <small className="text-muted-foreground block text-left">
-          {description}
-        </small>
-      </Label>
+    <div className="space-y-1">
+      {label && (
+        <Label
+          htmlFor={id}
+          className="block text-left text-base font-semibold text-gray-900"
+        >
+          {label}
+        </Label>
+      )}
+      {description && (
+        <p className="mb-1 text-left text-xs text-gray-500">{description}</p>
+      )}
       {textArea ? (
         <Textarea
           rows={4}
-          className="resize-none"
-          onChange={handleChange}
+          className={`w-full resize-none rounded-md border-gray-300 text-base focus:border-blue-500 focus:ring-blue-500 ${error ? "border-red-500" : ""}`}
           id={id}
           name={name}
           {...rest}
         />
       ) : (
         <Input
-          onChange={handleChange}
+          onChange={isPhoneField ? handlePhoneChange : onChange}
           type={type}
           id={id}
           name={name}
+          className={`w-full rounded-md border-gray-300 text-base focus:border-blue-500 focus:ring-blue-500 ${error ? "border-red-500" : ""}`}
           {...rest}
         />
       )}
+      {error && <p className="mt-1 text-left text-xs text-red-500">{error}</p>}
     </div>
   );
 }

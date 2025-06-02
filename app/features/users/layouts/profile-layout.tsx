@@ -55,7 +55,7 @@ export default function ProfileLayout({ loaderData }: Route.ComponentProps) {
                   <DialogTitle>Message</DialogTitle>
                 </DialogHeader>
                 <DialogDescription className="space-y-4">
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-muted-foreground text-sm">
                     Send a message to John Doe
                   </span>
                   <Form className="space-y-4">
@@ -71,7 +71,7 @@ export default function ProfileLayout({ loaderData }: Route.ComponentProps) {
             </Dialog>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-muted-foreground text-sm">
               @{loaderData.username}
             </span>
             <Badge variant="secondary">{loaderData.role}</Badge>

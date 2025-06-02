@@ -5,57 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1748376829177,
-      "tag": "0000_outgoing_madrox",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1748378229171,
-      "tag": "0001_omniscient_marvel_boy",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1748378773645,
-      "tag": "0002_purple_ender_wiggin",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1748378845386,
-      "tag": "0003_silky_jamie_braddock",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1748559656562,
-      "tag": "0004_red_the_professor",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1748802046232,
-      "tag": "0005_harsh_hairball",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1748809790166,
-      "tag": "0006_thin_big_bertha",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1748810207510,
-      "tag": "0007_great_true_believers",
+      "when": 1748851361415,
+      "tag": "0000_broken_santa_claus",
       "breakpoints": true
     }
   ]
