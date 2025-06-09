@@ -8,6 +8,20 @@
       "when": 1748851361415,
       "tag": "0000_broken_santa_claus",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1748981843242,
+      "tag": "0001_hard_micromacro",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1748994750420,
+      "tag": "0002_rare_hiroim",
+      "breakpoints": true
     }
   ]
 }

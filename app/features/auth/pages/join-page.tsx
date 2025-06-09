@@ -43,7 +43,19 @@ const formSchema = z
         required_error: "닉네임을 입력해 주세요.",
         invalid_type_error: "닉네임은 문자열이어야 합니다."
       })
-      .min(2, { message: "닉네임은 2자 이상이어야 합니다." }),
+      .min(2, { message: "닉네임은 2자 이상이어야 합니다." })
+      .refine((val) => !/^Onepy/i.test(val), {
+        message: "닉네임은 'Onepy'로 시작할 수 없습니다."
+      })
+      .refine((val) => !/^Kakao/i.test(val), {
+        message: "닉네임은 'Kakao'로 시작할 수 없습니다."
+      })
+      .refine((val) => !/^Google/i.test(val), {
+        message: "닉네임은 'Google'로 시작할 수 없습니다."
+      })
+      .refine((val) => !/^Apple/i.test(val), {
+        message: "닉네임은 'Apple'로 시작할 수 없습니다."
+      }),
     phone: z
       .string({
         required_error: "전화번호를 입력해 주세요.",

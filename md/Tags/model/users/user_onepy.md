@@ -9,15 +9,22 @@
 | avatar        | varchar(255) | N   |       |     | 255 | 프로필 이미지 URL                           |
 | certification | jsonb        | N   | {}    |     |     | 인증 정보 (이메일, 휴대폰 등)                    |
 | stats         | jsonb        | N   | {}    |     |     | 통계 정보 (팔로워, 팔로잉 등)                    |
-| created_at    | timestamptz  | Y   | now() |     |     | 생성일시                                  |
-| updated_at    | timestamptz  | Y   | now() |     |     | 수정일시                                  |
+| created_at    | timestamp  | Y   | now() |     |     | 생성일시                                  |
+| updated_at    | timestamp  | Y   | now() |     |     | 수정일시                                  |
 
-## 제약조건
+## 제약 조건
 
+1. 필드 조건
 - id: PK, FK(user_supabase.id), ON DELETE CASCADE
 - nickname: UNIQUE, NOT NULL, LENGTH 2~32
-- profile_image: NULL 허용, 최대 255자
+- avatar: NULL 허용, 최대 255자
 - created_at, updated_at: NOT NULL, 기본값 now()
+
+1. 연결 테이블
+- **[[Tags/model/payments/real_money_log|real_money_log]]**
+- **[[Tags/model/payments/onepy_money_log|onepy_money_log]]**
+- **[[payment]]**
+
 
 ---
 
@@ -77,7 +84,7 @@
 - profile_image: varchar(255)
 - certification: jsonb, default {}
 - stats: jsonb, default {}
-- created_at, updated_at: timestamptz, default now()
+- created_at, updated_at: timestamp, default now()
 - user_supabase는 외부 인증 테이블로, 참조만 명시
 
 ---

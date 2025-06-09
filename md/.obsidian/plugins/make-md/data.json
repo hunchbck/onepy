@@ -39,13 +39,14 @@
   "deleteFileOption": "trash",
   "expandedSpaces": [
     "/",
-    "//Tags",
     "//Tags/Tags/model",
     "//Tags/Tags/model/Tags/model/calculator",
     "//Tags/Tags/model/Tags/model/payments",
     "//Tags/Tags/model/Tags/model/moneys",
     "//Tags/Tags/model/Tags/model/users",
-    "//분양"
+    "//money",
+    "//Tags",
+    "//Tags/Tags/model/Tags/model/building"
   ],
   "expandFolderOnClick": true,
   "spacesFolder": "Tags",

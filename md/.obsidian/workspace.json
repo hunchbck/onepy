@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1.Document_History.md",
+                "file": "Tags/model/users/company_group.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "1.Document_History"
+              "title": "company_group"
             }
           }
         ]
@@ -85,7 +85,7 @@
             }
           },
           {
-            "id": "1aead903e0609cd8",
+            "id": "b26c4cecc64e270f",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -99,7 +99,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 286.5
+    "width": 246.5
   },
   "right": {
     "id": "f1ed49855ec2fe40",
@@ -115,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1.Document_History.md",
+                "file": "Tags/model/users/company_group.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +125,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "1.Document_History 의 백링크"
+              "title": "company_group 의 백링크"
             }
           },
           {
@@ -202,32 +202,33 @@
   },
   "active": "e216b2429ad2b726",
   "lastOpenFiles": [
+    "Tags/model/users/business_card_image.md",
+    "Tags/model/users/company_group.md",
+    "Tags/model/users/user_company_map.md",
+    "Tags/model/users/company.md",
+    "Tags/model/building/center_developer_map.md",
+    "Tags/model/building/center_contractor_map.md",
+    "Tags/model/building/center_floorplan.md",
+    "Tags/model/building/center_unit_price.md",
+    "Tags/model/building/center.md",
+    "Tags/model/payments/onepy_charge.md",
+    "Tags/model/payments/onepy_money_log.md",
+    "money/onepy_money_log.md",
+    "money/onepy_money.md",
+    "Tags/model/users/user_onepy.md",
+    "Tags/model/payments/product.md",
+    "Tags/model/payments/payment.md",
+    "Tags/model/payments/real_money_log.md",
+    "Tags/model/payments/total_money_log.md",
     "00.WebApp Planning.md",
-    "3-3.Membership_System.md",
-    "3-5.Grade_Scoring_Policy.md",
-    "3-4.CRUD.md",
-    "3-2.State_Value.md",
-    "3-1.Service_Use_Policy.md",
-    "2-8.Functional_Specification.md",
-    "2-7.User_Flow.md",
-    "2-6.Flow_Chart.md",
-    "2-5.Screen_Description.md",
-    "2-4.WireFrame.md",
-    "2-3.Information_Architecture.md",
-    "2-2.Task_Flow.md",
     "2-1.Menu_Structure.md",
     "1.Document_History.md",
-    "Tags/model/users/user_onepy.md",
-    "(답변)10.public-pages-checkpoint-template.md",
-    "분양/필요한기능.md",
-    "Tags/model/payments/onepy_money_log.md",
-    "Tags/model/payments/real_money_log.md",
-    "Tags/model/payments/payment.md",
-    "Tags/model/payments/payment_log.md",
-    "user_onepy.id.md",
-    "Tags/model/테이블 관계.md",
-    "Tags/model/calculator/balance.md",
-    "Tags/model/building/center.md",
+    "Tags/model/payments/reason.md",
+    "money/product.md",
+    "money/real_money_log.md",
+    "money/user_onepy.md",
+    "money",
+    "Tags/model/payments/payment_log - 복사본.md",
     "Tags/model/building",
     "Tags/model/money",
     "Tags/model/payments",
@@ -236,7 +237,6 @@
     "Tags/model/payment",
     "Tags/model",
     "분양/주저리주저리.txt",
-    "분양",
-    "Tags"
+    "분양"
   ]
 }

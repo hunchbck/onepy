@@ -1,12 +1,96 @@
 {
   "recentFiles": [
     {
-      "basename": "1.Document_History",
-      "path": "1.Document_History.md"
+      "basename": "company_group",
+      "path": "Tags/model/users/company_group.md"
+    },
+    {
+      "basename": "business_card_image",
+      "path": "Tags/model/users/business_card_image.md"
+    },
+    {
+      "basename": "user_company_map",
+      "path": "Tags/model/users/user_company_map.md"
+    },
+    {
+      "basename": "company",
+      "path": "Tags/model/users/company.md"
+    },
+    {
+      "basename": "center_developer_map",
+      "path": "Tags/model/building/center_developer_map.md"
+    },
+    {
+      "basename": "center_contractor_map",
+      "path": "Tags/model/building/center_contractor_map.md"
+    },
+    {
+      "basename": "center_floorplan",
+      "path": "Tags/model/building/center_floorplan.md"
+    },
+    {
+      "basename": "center_unit_price",
+      "path": "Tags/model/building/center_unit_price.md"
+    },
+    {
+      "basename": "center",
+      "path": "Tags/model/building/center.md"
+    },
+    {
+      "basename": "onepy_charge",
+      "path": "Tags/model/payments/onepy_charge.md"
+    },
+    {
+      "basename": "onepy_money_log",
+      "path": "Tags/model/payments/onepy_money_log.md"
+    },
+    {
+      "basename": "onepy_money_log",
+      "path": "money/onepy_money_log.md"
+    },
+    {
+      "basename": "onepy_money",
+      "path": "money/onepy_money.md"
+    },
+    {
+      "basename": "user_onepy",
+      "path": "Tags/model/users/user_onepy.md"
+    },
+    {
+      "basename": "product",
+      "path": "Tags/model/payments/product.md"
+    },
+    {
+      "basename": "payment",
+      "path": "Tags/model/payments/payment.md"
+    },
+    {
+      "basename": "real_money_log",
+      "path": "Tags/model/payments/real_money_log.md"
     },
     {
       "basename": "00.WebApp Planning",
       "path": "00.WebApp Planning.md"
+    },
+    {
+      "basename": "2-1.Menu_Structure",
+      "path": "2-1.Menu_Structure.md"
+    },
+    {
+      "basename": "1.Document_History",
+      "path": "1.Document_History.md"
+    },
+    {
+      "basename": "product",
+      "path": "money/product.md"
+    },
+    {
+      "basename": "real_money_log",
+      "path": "money/real_money_log.md"
+    },
+    {
+      "basename": "user_onepy",
+      "path": "money/user_onepy.md"
     },
     {
       "basename": "3-3.Membership_System",
@@ -57,32 +141,12 @@
       "path": "2-2.Task_Flow.md"
     },
     {
-      "basename": "2-1.Menu_Structure",
-      "path": "2-1.Menu_Structure.md"
-    },
-    {
-      "basename": "user_onepy",
-      "path": "Tags/model/users/user_onepy.md"
-    },
-    {
       "basename": "(답변)10.public-pages-checkpoint-template",
       "path": "(답변)10.public-pages-checkpoint-template.md"
     },
     {
       "basename": "필요한기능",
       "path": "분양/필요한기능.md"
-    },
-    {
-      "basename": "onepy_money_log",
-      "path": "Tags/model/payments/onepy_money_log.md"
-    },
-    {
-      "basename": "real_money_log",
-      "path": "Tags/model/payments/real_money_log.md"
-    },
-    {
-      "basename": "payment",
-      "path": "Tags/model/payments/payment.md"
     },
     {
       "basename": "user_onepy.id",
@@ -95,10 +159,6 @@
     {
       "basename": "balance",
       "path": "Tags/model/calculator/balance.md"
-    },
-    {
-      "basename": "center",
-      "path": "Tags/model/building/center.md"
     },
     {
       "basename": "user_supabase",
