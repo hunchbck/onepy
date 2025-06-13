@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tags/model/users/company_group.md",
+                "file": "QnA perplexity.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "company_group"
+              "title": "QnA perplexity"
             }
           }
         ]
@@ -85,7 +85,7 @@
             }
           },
           {
-            "id": "b26c4cecc64e270f",
+            "id": "3cb392c06723813c",
             "type": "leaf",
             "state": {
               "type": "mk-path-view",
@@ -115,7 +115,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tags/model/users/company_group.md",
+                "file": "QnA perplexity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +125,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "company_group 의 백링크"
+              "title": "QnA perplexity 의 백링크"
             }
           },
           {
@@ -202,8 +202,18 @@
   },
   "active": "e216b2429ad2b726",
   "lastOpenFiles": [
-    "Tags/model/users/business_card_image.md",
+    "QnA_goover.md",
+    "QnA_deepseek.md",
+    "QnA_grok.md",
+    "QnA_gemini.md",
+    "QnA_claude.md",
+    "QnA_chatgpt.md",
+    "QnA perplexity.md",
+    "2-2.Task_Flow.md",
+    "00.WebApp Planning.md",
+    "(답변)10.public-pages-checkpoint-template.md",
     "Tags/model/users/company_group.md",
+    "Tags/model/users/business_card_image.md",
     "Tags/model/users/user_company_map.md",
     "Tags/model/users/company.md",
     "Tags/model/building/center_developer_map.md",
@@ -218,17 +228,7 @@
     "Tags/model/users/user_onepy.md",
     "Tags/model/payments/product.md",
     "Tags/model/payments/payment.md",
-    "Tags/model/payments/real_money_log.md",
-    "Tags/model/payments/total_money_log.md",
-    "00.WebApp Planning.md",
-    "2-1.Menu_Structure.md",
-    "1.Document_History.md",
-    "Tags/model/payments/reason.md",
-    "money/product.md",
-    "money/real_money_log.md",
-    "money/user_onepy.md",
     "money",
-    "Tags/model/payments/payment_log - 복사본.md",
     "Tags/model/building",
     "Tags/model/money",
     "Tags/model/payments",

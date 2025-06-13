@@ -1,6 +1,46 @@
 {
   "recentFiles": [
     {
+      "basename": "QnA perplexity",
+      "path": "QnA perplexity.md"
+    },
+    {
+      "basename": "QnA_goover",
+      "path": "QnA_goover.md"
+    },
+    {
+      "basename": "QnA_deepseek",
+      "path": "QnA_deepseek.md"
+    },
+    {
+      "basename": "QnA_grok",
+      "path": "QnA_grok.md"
+    },
+    {
+      "basename": "QnA_gemini",
+      "path": "QnA_gemini.md"
+    },
+    {
+      "basename": "QnA_claude",
+      "path": "QnA_claude.md"
+    },
+    {
+      "basename": "QnA_chatgpt",
+      "path": "QnA_chatgpt.md"
+    },
+    {
+      "basename": "2-2.Task_Flow",
+      "path": "2-2.Task_Flow.md"
+    },
+    {
+      "basename": "00.WebApp Planning",
+      "path": "00.WebApp Planning.md"
+    },
+    {
+      "basename": "(답변)10.public-pages-checkpoint-template",
+      "path": "(답변)10.public-pages-checkpoint-template.md"
+    },
+    {
       "basename": "company_group",
       "path": "Tags/model/users/company_group.md"
     },
@@ -69,10 +109,6 @@
       "path": "Tags/model/payments/real_money_log.md"
     },
     {
-      "basename": "00.WebApp Planning",
-      "path": "00.WebApp Planning.md"
-    },
-    {
       "basename": "2-1.Menu_Structure",
       "path": "2-1.Menu_Structure.md"
     },
@@ -135,14 +171,6 @@
     {
       "basename": "2-3.Information_Architecture",
       "path": "2-3.Information_Architecture.md"
-    },
-    {
-      "basename": "2-2.Task_Flow",
-      "path": "2-2.Task_Flow.md"
-    },
-    {
-      "basename": "(답변)10.public-pages-checkpoint-template",
-      "path": "(답변)10.public-pages-checkpoint-template.md"
     },
     {
       "basename": "필요한기능",

@@ -79,6 +79,13 @@ const routes: RouteConfig = [
   ...prefix("/support", [
     route("/faq", "features/community/pages/faq-page.tsx"), // FAQ
     route("/contact", "features/community/pages/contact-page.tsx") // 문의하기
+  ]),
+
+  // X. Users
+  ...prefix("/users/:username", [
+    layout("features/users/layouts/profile-layout.tsx", [
+      route("/welcome", "features/users/pages/welcome-page.tsx")
+    ])
   ])
 ];
 

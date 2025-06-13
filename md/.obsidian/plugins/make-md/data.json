@@ -45,7 +45,6 @@
     "//Tags/Tags/model/Tags/model/moneys",
     "//Tags/Tags/model/Tags/model/users",
     "//money",
-    "//Tags",
     "//Tags/Tags/model/Tags/model/building"
   ],
   "expandFolderOnClick": true,
